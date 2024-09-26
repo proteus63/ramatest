@@ -1,31 +1,14 @@
+from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
 from tmdbv3api import TMDb, Search
-from stremio_addon_sdk import Addon, manifest
-import logging
 
-logging.basicConfig(level=logging.INFO)
+app = Flask(__name__)
 
 # Configurazione di TMDB
 tmdb = TMDb()
 tmdb.api_key = 'LA_TUA_API_KEY_TMDB'
-
 search = Search()
-
-# Creazione dell'addon con manifest per Stremio
-addon = Addon(manifest={
-    "id": "community.ramaorientalfansub",
-    "version": "1.0.0",
-    "name": "Rama Oriental Fansub Addon",
-    "description": "Addon per mostrare contenuti di Corea del Sud da Rama Oriental Fansub con TMDB integration",
-    "types": ["series", "movie"],
-    "catalogs": [
-        {"type": "series", "id": "rama-oriental-corea", "name": "Serie Coreane"},
-    ],
-    "resources": [
-        "catalog"
-    ]
-})
 
 # Funzione di scraping per raccogliere i titoli delle serie da Rama Oriental Fansub
 def scrape_ramaorientalfansub():
@@ -61,8 +44,8 @@ def get_tmdb_metadata(title):
         }
     return None
 
-# Handler per il catalogo delle serie coreane
-@addon.route('/catalog/series/rama-oriental-corea.json')
+# Route per gestire la richiesta del catalogo di serie coreane
+@app.route('/catalog/series/rama-oriental-corea.json')
 def catalog_handler():
     scraped_shows = scrape_ramaorientalfansub()
     
@@ -84,10 +67,10 @@ def catalog_handler():
                 "year": "N/A"
             })
     
-    return {
+    return jsonify({
         "metas": metas
-    }
+    })
 
-# Avvio del server dell'addon
-if __name__ == "__main__":
-    addon.serve('http://0.0.0.0:5555')
+# Avvio del server
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5555)
