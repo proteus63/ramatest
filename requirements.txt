@@ -1,3 +1,4 @@
+stremio-addon-sdk
 flask
 requests
 beautifulsoup4
