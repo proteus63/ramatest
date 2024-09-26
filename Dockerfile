@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # EXPOSE 5555
 
-# CMD ["python", "ramascrape.py"]
+CMD ["python", "ramascrape.py"]
