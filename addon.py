@@ -5,9 +5,9 @@ app = Flask(__name__)
 # Definiamo le informazioni sull'add-on
 addon_manifest = {
     "id": "org.ramaorientalfansub.tv",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "name": "Rama Oriental Fansub",
-    "description": "Addon per il fansub Rama Oriental",
+    "description": "Addon per Rama Oriental",
     "resources": ["catalog", "stream", "meta"],
     "types": ["movie", "series"],
     "catalogs": [{"type": "movie", "id": "rama_movies"}, {"type": "series", "id": "rama_series"}],
