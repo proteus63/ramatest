@@ -8,11 +8,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Clone the repository
-RUN git clone --branch test1 https://github.com/proteus63/ramadrama.git .
+# RUN git clone --branch test1 https://github.com/proteus63/ramadrama.git .
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# EXPOSE 5555
+EXPOSE 5555
 
 CMD ["python", "ramascrape.py"]
