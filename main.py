@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Configurazione di TMDB
 tmdb = TMDb()
-tmdb.api_key = 'LA_TUA_API_KEY_TMDB'
+tmdb.api_key = '8b32222ed5da2fa7ff31e7ab08c8f64d'
 search = Search()
 
 # Funzione di scraping per raccogliere i titoli delle serie da Rama Oriental Fansub
