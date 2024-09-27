@@ -13,6 +13,7 @@ RUN git clone https://github.com/proteus63/ramatest.git .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5555
+COPY ramascrape.py ./app/ramascrape.py
+# EXPOSE 5555
 
 CMD ["python", "ramascrape.py"]
